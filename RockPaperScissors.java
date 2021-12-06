@@ -1,7 +1,7 @@
 /*
 *
 * The Rock paper scissors program lets you play rock paper scissors.
-* 
+*
 *
 * @author Jakob
 * @version 1.0
@@ -12,69 +12,96 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
-* Prevent instantiation.
-* Throw an exception IllegalStateException.
-* if this ever is called
-*
-* @throws IllegalStateException
-*
-*
+* Rock paper scissors program lets you play rock paper scissors.
 */
+public final class RockPaperScissors {
 
-public class RockPaperScissors {
+    /** Constant for rock. */
+    public static final String ROCK = "rock";
 
-public static final String ROCK = "rock";
+    /** Constant for scissors. */
+    public static final String SCISSORS = "scissors";
 
-public static final String SCISSORS = "scissors";
+    /** Constant for paper. */
+    public static final String PAPER = "paper";
 
-public static final String PAPER = "paper";
+    /** Constant for win. */
+    public static final String WIN = "You Win";
 
-    public static void main(String[] args) {
+    /** Constant for loss. */
+    public static final String LOSE = "You Lose";
 
-    String[] rps = {ROCK, PAPER, SCISSORS};
-    String cMove = rps[new Random().nextInt(rps.length)];
+    /** Constant for computer move. */
+    public static final String COMPUTER = "The computer played: ";
 
-    Scanner scanner = new Scanner(System.in);
-    String pMove;
+    /**
+    * Prevents instantiation.
+    *
+    *  @throws IllegalStateException
+    *
+    */
 
-    while(true) {
-    System.out.println("Pick rock, paper or scissors: ");
-    pMove = scanner.nextLine();
-    if (pMove.equals(ROCK) || pMove.equals(PAPER) || pMove.equals(SCISSORS)) {
-        break;
+    private RockPaperScissors() {
+        throw new IllegalStateException("Cannot be instantiated");
     }
-    System.out.println(pMove + " is not a valid move. The only choices are rock, paper and scissors");
+
+    /**
+    * The starting main() function.
+    *
+    * @param args No args will be used
+    */
+    public static void main(final String[] args) {
+
+        final String[] rps = {ROCK, PAPER, SCISSORS};
+        final String cMove = rps[new Random().nextInt(rps.length)];
+
+        final Scanner scanner = new Scanner(System.in);
+        final String pMove;
+
+        System.out.println("Pick rock, paper or scissors: ");
+        pMove = scanner.nextLine();
+
+        if (pMove.equals(cMove)) {
+            System.out.println(COMPUTER + cMove);
+            System.out.println("It was a tie");
+        }
+        else if (pMove.equals(ROCK)) {
+            if (cMove.equals(PAPER)) {
+                System.out.println(COMPUTER + cMove);
+                System.out.println(LOSE);
+
+            }
+            else {
+                System.out.println(COMPUTER + cMove);
+                System.out.println(WIN);
+            }
+        }
+        else if (pMove.equals(PAPER)) {
+            if (cMove.equals(SCISSORS)) {
+                System.out.println(COMPUTER + cMove);
+                System.out.println(LOSE);
+
+            }
+            else {
+                System.out.println(COMPUTER + cMove);
+                System.out.println(WIN);
+            }
+        }
+        else if (pMove.equals(SCISSORS)) {
+            if (cMove.equals(ROCK)) {
+                System.out.println(COMPUTER + cMove);
+                System.out.println(LOSE);
+
+            }
+            else {
+                System.out.println(COMPUTER + cMove);
+                System.out.println(WIN);
+            }
+        }
+        else {
+            System.out.println(pMove + " is not a valid move."
+                + " The only choices are rock, paper and scissors");
+        }
+        System.out.println("\nDone.");
     }
-
-    System.out.println("The computer played: " + cMove);
-
-    if (pMove.equals(cMove)) {
-        System.out.println("It was a tie");
-    }
-    else if (pMove.equals(ROCK)) {
-         if (cMove.equals(PAPER)) {
-           System.out.println("You lose");
-
-          } else if (cMove.equals(SCISSORS)) {
-              System.out.println("You Win");
-         }
-    }
-    else if (pMove.equals(PAPER)) {
-        if (cMove.equals(SCISSORS)) {
-             System.out.println("You lose");
-
-        } else if (cMove.equals(ROCK)) {
-               System.out.println("You Win");
-         }
-     }      
-     else if (pMove.equals(SCISSORS)) {
-         if (cMove.equals(ROCK)) {
-             System.out.println("You lose");
-
-         } else if (cMove.equals(PAPER)) {
-         System.out.println("You Win");
-    }
-    System.out.println("\nDone.");
-   }
-}
 }
